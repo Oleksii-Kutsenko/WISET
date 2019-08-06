@@ -18,7 +18,7 @@ def gen_to_buy(to_buy_products, query, money):
                 season_start__lte=datetime.date.today(),
                 season_end__gte=datetime.date.today(),
                 ) \
-        .exclude(name__in=to_buy_products)
+        .exclude(name__in=[product.name for product in to_buy_products])
     if query.count() == 0:
         return to_buy_products
     product = query[random.randint(0, query.count() - 1)]
@@ -28,7 +28,14 @@ def gen_to_buy(to_buy_products, query, money):
 
 @csrf_exempt
 def add_to_fridge(request):
-    data = json.loads(request.body)
+    data = json.loads(request.body)['data']
+    for id in data.keys():
+        model = Product.objects.get(id=int(id))
+        model.name = data[id]['name']
+        model.price = data[id]['price']
+        model.category = data[id]['category']
+        model.in_fridge = data[id]['in_fridge']
+        model.save()
     return HttpResponse(status=200)
 
 

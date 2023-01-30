@@ -10,12 +10,14 @@ class Product(models.Model):
     season_end = models.DateField(db_index=True, null=False)
 
     def __repr__(self):
-        return "<Product {} {} {} {} {} {}>".format(self.name,
-                                                    self.price,
-                                                    self.category,
-                                                    self.in_fridge,
-                                                    self.season_start,
-                                                    self.season_end)
+        return "<Product {} {} {} {} {} {}>".format(
+            self.name,
+            self.price,
+            self.category,
+            self.in_fridge,
+            self.season_start,
+            self.season_end,
+        )
 
     def __str__(self):
         return self.__repr__()

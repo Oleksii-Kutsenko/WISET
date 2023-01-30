@@ -7,20 +7,27 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(db_index=True, max_length=64, unique=True)),
-                ('price', models.DecimalField(decimal_places=2, max_digits=6)),
-                ('category', models.CharField(db_index=True, max_length=64)),
-                ('in_fridge', models.BooleanField()),
-                ('season_start', models.DateField(db_index=True)),
-                ('season_end', models.DateField(db_index=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(db_index=True, max_length=64, unique=True)),
+                ("price", models.DecimalField(decimal_places=2, max_digits=6)),
+                ("category", models.CharField(db_index=True, max_length=64)),
+                ("in_fridge", models.BooleanField()),
+                ("season_start", models.DateField(db_index=True)),
+                ("season_end", models.DateField(db_index=True)),
             ],
         ),
     ]
